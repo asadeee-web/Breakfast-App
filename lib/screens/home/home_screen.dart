@@ -43,6 +43,7 @@ class HomePage extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: ((context, index) {
                             return Container(
+                              width: 100,
                               decoration: BoxDecoration(
                                   color: model.listcategory[index].boxColor),
                             );
