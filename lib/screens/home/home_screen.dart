@@ -39,16 +39,17 @@ class HomePage extends StatelessWidget {
                     Container(
                       height: 150,
                       child: ListView.separated(
-                        itemCount: model.listcategory.length,
-
-
+                          itemCount: model.listcategory.length,
+                          scrollDirection: Axis.horizontal,
                           itemBuilder: ((context, index) {
                             return Container(
-                              decoration: BoxDecoration(color: ),
+                              decoration: BoxDecoration(
+                                  color: model.listcategory[index].boxColor),
                             );
                           }),
-                          separatorBuilder: separatorBuilder,
-                        ),
+                          separatorBuilder: (context, index) => SizedBox(
+                                width: 25,
+                              )),
                     )
                   ],
                 )
