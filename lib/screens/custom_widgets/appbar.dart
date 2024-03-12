@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 
 AppBar appbar() {
   return AppBar(
+    scrolledUnderElevation: 0.0,
+    backgroundColor: Colors.white,
     centerTitle: true,
     title: const Text(
       "Breakfast",

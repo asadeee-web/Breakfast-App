@@ -18,8 +18,8 @@ class HomePage extends StatelessWidget {
 
             appBar: appbar(), //App bar function
 
-            body: SingleChildScrollView(
-              child: Column(
+            body: ListView(children: [
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SearchFeild(), //search feild function
@@ -32,106 +32,151 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
+                  Diet_listview(model), // Diet List view function
+
+                  SizedBox(
+                    height: 40,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
+                        padding: const EdgeInsets.only(left: 20),
                         child: Text(
-                          "Recomendation\nfor Diet",
+                          "Popular",
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ),
                       SizedBox(
                         height: 15,
                       ),
-                      Container(
-                        height: 240,
-                        child: ListView.separated(
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                width: 210,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    SvgPicture.asset(
-                                        model.listdiet[index].iconpath),
-                                    Column(
-                                      children: [
-                                        Text(
-                                          model.listdiet[index].name,
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.black),
-                                        ),
-                                        Text(
-                                          model.listdiet[index].level +
-                                              ' | ' +
-                                              model.listdiet[index].duration +
-                                              ' | ' +
-                                              model.listdiet[index].Calorie,
-                                          style: TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.black54),
-                                        )
-                                      ],
-                                    ),
-                                    Container(
-                                        height: 45,
-                                        width: 130,
-                                        child: Center(
-                                          child: Text("Veiw",
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: model.listdiet[index]
-                                                          .viewisslected
-                                                      ? Colors.white
-                                                      : Color(0xffc58bf2))),
-                                        ),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            gradient: LinearGradient(colors: [
-                                              model.listdiet[index]
-                                                      .viewisslected
-                                                  ? Color(0xff9dceff)
-                                                  : Colors.transparent,
-                                              model.listdiet[index]
-                                                      .viewisslected
-                                                  ? Color(0xff92a3fd)
-                                                  : Colors.transparent
-                                            ]))),
+                      ListView.separated(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 115,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color:
+                                            Color(0xff1d1617).withOpacity(0.07),
+                                        offset: Offset(0, 10),
+                                        blurRadius: 40,
+                                        spreadRadius: 0.0)
                                   ],
-                                ),
-                                decoration: BoxDecoration(
-                                    color: model.listdiet[index].boxcolor
-                                        .withOpacity(0.3),
-                                    borderRadius: BorderRadius.circular(20)),
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return SizedBox(
-                                width: 25,
-                              );
-                            },
-                            itemCount: model.listdiet.length),
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                      )
+                                  borderRadius: BorderRadius.circular(16)),
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                              height: 25,
+                            );
+                          },
+                          itemCount: model.listpopulardiet.length),
                     ],
+                  ),
+                  SizedBox(
+                    height: 40,
                   )
                 ],
               ),
-            ),
+            ]),
           ),
         ));
+  }
+
+  Column Diet_listview(HomeCategoryModel model) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Text(
+            "Recomendation\nfor Diet",
+            style: TextStyle(
+                color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Container(
+          height: 240,
+          child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Container(
+                  width: 210,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SvgPicture.asset(model.listdiet[index].iconpath),
+                      Column(
+                        children: [
+                          Text(
+                            model.listdiet[index].name,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),
+                          ),
+                          Text(
+                            model.listdiet[index].level +
+                                ' | ' +
+                                model.listdiet[index].duration +
+                                ' | ' +
+                                model.listdiet[index].Calorie,
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black54),
+                          )
+                        ],
+                      ),
+                      Container(
+                          height: 45,
+                          width: 130,
+                          child: Center(
+                            child: Text("Veiw",
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: model.listdiet[index].viewisslected
+                                        ? Colors.white
+                                        : Color(0xffc58bf2))),
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              gradient: LinearGradient(colors: [
+                                model.listdiet[index].viewisslected
+                                    ? Color(0xff9dceff)
+                                    : Colors.transparent,
+                                model.listdiet[index].viewisslected
+                                    ? Color(0xff92a3fd)
+                                    : Colors.transparent
+                              ]))),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                      color: model.listdiet[index].boxcolor.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(20)),
+                );
+              },
+              separatorBuilder: (context, index) {
+                return SizedBox(
+                  width: 25,
+                );
+              },
+              itemCount: model.listdiet.length),
+          padding: EdgeInsets.only(
+            left: 20,
+          ),
+        )
+      ],
+    );
   }
 
   Column Category_listview(HomeCategoryModel model) {

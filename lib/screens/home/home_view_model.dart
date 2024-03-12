@@ -43,6 +43,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/models/category_model.dart';
 import 'package:flutter_application_2/core/models/diet_model.dart';
 import 'package:flutter_application_2/core/models/others/base_view_model.dart';
+import 'package:flutter_application_2/core/models/popular_model.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeCategoryModel extends BaseViewModel {
@@ -81,5 +82,21 @@ class HomeCategoryModel extends BaseViewModel {
         iconpath: "assets/icons/canai-bread.svg",
         level: "Easy",
         viewisslected: false),
+  ];
+  List<PopularDiet> listpopulardiet = [
+    PopularDiet(
+        name: "BlueBerry Pancake",
+        Calorie: "230kCal",
+        duration: "30mins",
+        iconpath: "assets/icons/blueberry-pancakes.svg",
+        level: "Medium",
+        boxisslected: true),
+    PopularDiet(
+        name: "Salmon Nigiri",
+        Calorie: "130kCal",
+        duration: "20mins",
+        iconpath: "assets/icons/salmon-nigiri.svg",
+        level: "Easy",
+        boxisslected: false),
   ];
 }
