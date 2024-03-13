@@ -37,47 +37,8 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Text(
-                          "Popular",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      ListView.separated(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              height: 115,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color:
-                                            Color(0xff1d1617).withOpacity(0.07),
-                                        offset: Offset(0, 10),
-                                        blurRadius: 40,
-                                        spreadRadius: 0.0)
-                                  ],
-                                  borderRadius: BorderRadius.circular(16)),
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return SizedBox(
-                              height: 25,
-                            );
-                          },
-                          itemCount: model.listpopulardiet.length),
-                    ],
-                  ),
+                  Popular_Diet_ListView(
+                      model), // Popular Diet List View Funtion
                   SizedBox(
                     height: 40,
                   )
@@ -86,6 +47,80 @@ class HomePage extends StatelessWidget {
             ]),
           ),
         ));
+  }
+
+  //Functions
+
+  Column Popular_Diet_ListView(HomeCategoryModel model) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Text(
+            "Popular",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        ListView.separated(
+            padding: EdgeInsets.only(left: 20, right: 20),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return Container(
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SvgPicture.asset(
+                      model.listpopulardiet[index].iconpath,
+                      width: 65,
+                      height: 65,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          model.listpopulardiet[index].name,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          model.listpopulardiet[index].level +
+                              " | " +
+                              model.listpopulardiet[index].Calorie +
+                              " | " +
+                              model.listpopulardiet[index].duration,
+                          style: TextStyle(fontSize: 13, color: Colors.black54),
+                        )
+                      ],
+                    ),
+                    SvgPicture.asset('assets/icons/button.svg')
+                  ],
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color(0xff1d1617).withOpacity(0.07),
+                          offset: Offset(0, 10),
+                          blurRadius: 40,
+                          spreadRadius: 0.0)
+                    ],
+                    borderRadius: BorderRadius.circular(16)),
+              );
+            },
+            separatorBuilder: (context, index) {
+              return SizedBox(
+                height: 25,
+              );
+            },
+            itemCount: model.listpopulardiet.length),
+      ],
+    );
   }
 
   Column Diet_listview(HomeCategoryModel model) {

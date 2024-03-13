@@ -88,7 +88,7 @@ class HomeCategoryModel extends BaseViewModel {
         name: "BlueBerry Pancake",
         Calorie: "230kCal",
         duration: "30mins",
-        iconpath: "assets/icons/blueberry-pancakes.svg",
+        iconpath: "assets/icons/blueberry-pancake.svg",
         level: "Medium",
         boxisslected: true),
     PopularDiet(
